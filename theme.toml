@@ -1,0 +1,14 @@
+name = "Hufolio"
+license = "MIT"
+licenselink = "https://github.com/zkreations/hufolio/blob/main/LICENSE"
+description = "A minimal and editorial theme for Hugo"
+homepage = "https://github.com/zkreations/hufolio"
+demosite = "https://hufolio.com"
+tags = ["blog", "minimal", "clean", "instant-view", "editorial"]
+features = []
+min_version = "0.164.0"
+
+[author]
+  name = "zkreations"
+  homepage = "https://www.zkreations.com"
+
