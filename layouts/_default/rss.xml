@@ -1,0 +1,41 @@
+{{- $pctx := . -}}
+{{- if .IsHome -}}{{ $pctx = .Site }}{{- end -}}
+{{- $pages := slice -}}
+{{- if or $.IsHome $.IsSection -}}
+  {{- $pages = where $pctx.RegularPages "Section" "posts" -}}
+  {{- if not $pages -}}
+    {{- $pages = $pctx.RegularPages -}}
+  {{- end -}}
+{{- else -}}
+  {{- $pages = $pctx.Pages -}}
+{{- end -}}
+{{- $limit := site.Config.Services.RSS.Limit | default 50 -}}
+{{- if ge $limit 1 -}}
+  {{- $pages = $pages | first $limit -}}
+{{- end -}}
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ if eq .Title site.Title }}{{ site.Title }}{{ else }}{{ with .Title }}{{ . }} — {{ end }}{{ site.Title }}{{ end }}</title>
+    <link>{{ .Permalink }}</link>
+    <description>{{ with or .Description site.Params.description }}{{ . }}{{ else }}Recent content on {{ site.Title }}{{ end }}</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>{{ site.Language.Locale | default site.Language.Lang | default "en" }}</language>
+    {{ with site.Params.author }}<managingEditor>{{ . }}</managingEditor>{{ end }}
+    {{ with site.Copyright }}<copyright>{{ . }}</copyright>{{ end }}
+    {{ if not .Date.IsZero }}<lastBuildDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</lastBuildDate>{{ end }}
+    {{ with .OutputFormats.Get "rss" }}
+      {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
+    {{ end }}
+    {{ range $pages }}
+    <item>
+      <title>{{ .Title }}</title>
+      <link>{{ .Permalink }}</link>
+      <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</pubDate>
+      {{ with or .Params.author site.Params.author }}<author>{{ . }}</author>{{ end }}
+      <guid>{{ .Permalink }}</guid>
+      <description>{{ with or .Description .Summary }}{{ . | htmlEscape }}{{ end }}</description>
+    </item>
+    {{ end }}
+  </channel>
+</rss>

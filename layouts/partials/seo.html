@@ -1,0 +1,90 @@
+{{- $title := "" -}}
+{{- if .IsHome -}}
+  {{- $title = site.Title -}}
+  {{- with site.Params.description -}}
+    {{- $title = printf "%s — %s" site.Title . -}}
+  {{- end -}}
+{{- else -}}
+  {{- $title = printf "%s — %s" .Title site.Title -}}
+{{- end -}}
+
+{{- $description := "" -}}
+{{- with .Description -}}
+  {{- $description = . -}}
+{{- else with .Summary -}}
+  {{- $description = . | plainify -}}
+{{- else with site.Params.description -}}
+  {{- $description = . -}}
+{{- end -}}
+
+{{- $author := or .Params.author site.Params.author -}}
+
+{{- $cover := "" -}}
+{{- with .Params.image -}}
+  {{- $cover = $.Resources.GetMatch . -}}
+  {{- if not $cover -}}
+    {{- $cover = resources.Get . -}}
+  {{- end -}}
+{{- else -}}
+  {{- $cover = .Resources.GetMatch "cover.*" -}}
+  {{- if not $cover -}}
+    {{- $cover = .Resources.GetMatch "featured.*" -}}
+  {{- end -}}
+  {{- if not $cover -}}
+    {{- $images := .Resources.ByType "image" -}}
+    {{- if gt (len $images) 0 -}}
+      {{- $cover = index $images 0 -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+<title>{{ $title }}</title>
+{{- with $description }}
+<meta name="description" content="{{ . }}">
+{{- end }}
+{{- with $author }}
+<meta name="author" content="{{ . }}">
+{{- end }}
+{{- if eq .Kind "404" }}
+<meta name="robots" content="noindex, follow">
+{{- else }}
+<meta name="robots" content="index, follow">
+{{- end }}
+<link rel="canonical" href="{{ .Permalink }}">
+
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
+{{- with $description }}
+<meta property="og:description" content="{{ . }}">
+{{- end }}
+<meta property="og:url" content="{{ .Permalink }}">
+{{- if .IsPage }}
+<meta property="og:type" content="article">
+  {{- if not .Date.IsZero }}
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+  {{- end }}
+  {{- with $author }}
+<meta property="article:author" content="{{ . }}">
+  {{- end }}
+{{- else }}
+<meta property="og:type" content="website">
+{{- end }}
+
+{{- with $cover }}
+<meta property="og:image" content="{{ .Permalink }}">
+<meta property="og:image:width" content="{{ .Width }}">
+<meta property="og:image:height" content="{{ .Height }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{{ .Permalink }}">
+{{- else }}
+<meta name="twitter:card" content="summary">
+{{- end }}
+
+<meta name="twitter:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
+{{- with $description }}
+<meta name="twitter:description" content="{{ . }}">
+{{- end }}
+
+{{- with .OutputFormats.Get "rss" }}
+<link rel="alternate" type="application/rss+xml" title="{{ site.Title }}" href="{{ .Permalink }}">
+{{- end }}

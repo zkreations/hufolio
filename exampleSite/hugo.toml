@@ -2,6 +2,8 @@ baseURL = "https://example.com/"
 defaultContentLanguage = "en"
 title = "Hufolio Demo"
 theme = "hufolio"
+enableRobotsTXT = true
+disableKinds = ["taxonomy", "term"]
 
 [params]
   description = "A minimalist editorial site built with Hufolio."

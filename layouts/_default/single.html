@@ -21,17 +21,29 @@
     {{ end }}
   </header>
 
-  {{ $cover := "" }}
-  {{ with .Params.image }}
-    {{ $cover = $.Resources.GetMatch . }}
-  {{ else }}
-    {{ $cover = .Resources.GetMatch "cover.*" }}
-  {{ end }}
-  {{ with $cover }}
+  {{- $cover := "" -}}
+  {{- with .Params.image -}}
+    {{- $cover = $.Resources.GetMatch . -}}
+    {{- if not $cover -}}
+      {{- $cover = resources.Get . -}}
+    {{- end -}}
+  {{- else -}}
+    {{- $cover = .Resources.GetMatch "cover.*" -}}
+    {{- if not $cover -}}
+      {{- $cover = .Resources.GetMatch "featured.*" -}}
+    {{- end -}}
+    {{- if not $cover -}}
+      {{- $images := .Resources.ByType "image" -}}
+      {{- if gt (len $images) 0 -}}
+        {{- $cover = index $images 0 -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- with $cover -}}
     <figure class="article-cover">
       <img src="{{ .RelPermalink }}" alt="{{ $.Title }}" width="{{ .Width }}" height="{{ .Height }}" loading="eager" decoding="async">
     </figure>
-  {{ end }}
+  {{- end -}}
 
   <div class="article-body">
     {{ .Content }}
