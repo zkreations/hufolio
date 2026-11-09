@@ -53,6 +53,8 @@ You can install Hufolio using either **Hugo Modules** (recommended) or as a **Gi
 
 ### Method 1: Hugo Modules (Recommended)
 
+*(Note: Hugo Modules require [Go](https://go.dev/) installed on your machine or CI runner)*
+
 1. Initialize your Hugo project as a module if you haven't already:
    ```bash
    hugo mod init github.com/yourusername/my-site
