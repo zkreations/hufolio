@@ -1,0 +1,40 @@
+{{ define "main" }}
+{{ $isPost := or (eq .Section "posts") (not .Date.IsZero) }}
+<article class="{{ if $isPost }}article{{ else }}page{{ end }}">
+  <header class="article-header">
+    <h1 class="article-title">{{ .Title }}</h1>
+    {{ with .Description }}
+      <p class="article-description">{{ . }}</p>
+    {{ end }}
+    {{ if and $isPost (or .Params.author site.Params.author (not .Date.IsZero)) }}
+    <div class="article-meta">
+      {{ with or .Params.author site.Params.author }}
+        <span class="article-author">{{ . }}</span>
+      {{ end }}
+      {{ if and (or .Params.author site.Params.author) (not .Date.IsZero) }}
+        <span class="article-meta-separator" aria-hidden="true">•</span>
+      {{ end }}
+      {{ if not .Date.IsZero }}
+        <time class="article-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2 Jan 2006" }}</time>
+      {{ end }}
+    </div>
+    {{ end }}
+  </header>
+
+  {{ $cover := "" }}
+  {{ with .Params.image }}
+    {{ $cover = $.Resources.GetMatch . }}
+  {{ else }}
+    {{ $cover = .Resources.GetMatch "cover.*" }}
+  {{ end }}
+  {{ with $cover }}
+    <figure class="article-cover">
+      <img src="{{ .RelPermalink }}" alt="{{ $.Title }}" width="{{ .Width }}" height="{{ .Height }}" loading="eager" decoding="async">
+    </figure>
+  {{ end }}
+
+  <div class="article-body">
+    {{ .Content }}
+  </div>
+</article>
+{{ end }}

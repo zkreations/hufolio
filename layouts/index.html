@@ -1,0 +1,20 @@
+{{ define "main" }}
+<div class="post-list">
+  {{ $posts := where .Site.RegularPages "Section" "posts" }}
+  {{ if not $posts }}
+    {{ $posts = .Site.RegularPages }}
+  {{ end }}
+  {{ range $posts.ByDate.Reverse }}
+    <article class="post-item">
+      <h2 class="post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+      {{ with .Description }}
+        <p class="post-description">{{ . }}</p>
+      {{ end }}
+      {{ if not .Date.IsZero }}
+        <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2 Jan 2006" }}</time>
+      {{ end }}
+    </article>
+  {{ end }}
+</div>
+{{ end }}
+

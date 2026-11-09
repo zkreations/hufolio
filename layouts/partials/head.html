@@ -1,0 +1,8 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ if .IsHome }}{{ site.Title }}{{ with site.Params.description }} — {{ . }}{{ end }}{{ else }}{{ .Title }} — {{ site.Title }}{{ end }}</title>
+{{ with or .Description site.Params.description }}
+<meta name="description" content="{{ . }}">
+{{ end }}
+{{ partial "styles.html" . }}
+

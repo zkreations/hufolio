@@ -1,0 +1,14 @@
+baseURL = "https://example.com/"
+defaultContentLanguage = "en"
+title = "Hufolio Demo"
+theme = "hufolio"
+
+[params]
+  description = "A minimalist editorial site built with Hufolio."
+  author = "zkreations"
+
+[menu]
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 1
