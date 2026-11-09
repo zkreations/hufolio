@@ -1,3 +1,10 @@
-{{ $css := resources.Get "css/main.css" | resources.Minify | resources.Fingerprint }}
+<link rel="preload" href="{{ "fonts/Inter-Regular.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ "fonts/Inter-Medium.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ "fonts/Inter-SemiBold.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+{{- $tokens := resources.Get "css/_tokens.css" -}}
+{{- $reset := resources.Get "css/_reset.css" -}}
+{{- $layout := resources.Get "css/_layout.css" -}}
+{{- $typography := resources.Get "css/_typography.css" -}}
+{{- $article := resources.Get "css/_article.css" -}}
+{{- $css := slice $tokens $reset $layout $typography $article | resources.Concat "css/main.css" | resources.Minify | resources.Fingerprint -}}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" crossorigin="anonymous">
-
