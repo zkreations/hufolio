@@ -39,14 +39,22 @@
 }
 
 .site-title {
+  margin: 0;
   font-size: 1.125rem;
   font-weight: 600;
+  line-height: inherit;
   color: var(--color-text);
   text-decoration: none;
   letter-spacing: -0.01em;
 }
 
-.site-title:hover {
+.site-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-title:hover,
+.site-title a:hover {
   color: var(--color-text);
   text-decoration: none;
 }

@@ -8,7 +8,7 @@ draft: false
 
 Lists provide clear conceptual grouping for structured information. This post verifies multi-level indentation and numbering.
 
-### Nested Unordered List
+## Nested Unordered List
 
 - Editorial Foundations
   - Typographic scale and line height
@@ -21,7 +21,7 @@ Lists provide clear conceptual grouping for structured information. This post ve
   - Zero third-party runtime scripts
   - Semantic HTML5 elements
 
-### Nested Ordered List
+## Nested Ordered List
 
 1. Planning and Architecture
    1. Define structural HTML Contract

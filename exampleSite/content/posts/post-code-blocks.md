@@ -8,11 +8,11 @@ draft: false
 
 Technical writing frequently relies on inline expressions and multiline code blocks. Hufolio formats code with high-legibility monospace fonts and subtle backgrounds.
 
-### Inline Code
+## Inline Code
 
 Configuration options such as `baseURL`, `defaultContentLanguage`, and parameters like `author` are emphasized as inline `code` snippets.
 
-### HTML Example
+## HTML Example
 
 ```html
 <main id="main-content" class="site-main">
@@ -27,7 +27,7 @@ Configuration options such as `baseURL`, `defaultContentLanguage`, and parameter
 </main>
 ```
 
-### Go Template Example
+## Go Template Example
 
 ```go
 {{ define "main" }}
@@ -42,7 +42,7 @@ Configuration options such as `baseURL`, `defaultContentLanguage`, and parameter
 {{ end }}
 ```
 
-### CSS Token Example
+## CSS Token Example
 
 ```css
 :root {

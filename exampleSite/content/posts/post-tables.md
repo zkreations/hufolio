@@ -8,7 +8,7 @@ draft: false
 
 Tables organize comparative data and technical specifications. Hufolio ensures tables remain clean, with subtle borders and smooth horizontal scrolling on mobile viewports.
 
-### Multi-Column Aligned Table
+## Multi-Column Aligned Table
 
 | Feature Name | Category | Status | Primary Purpose |
 |:---|:---:|:---:|---:|

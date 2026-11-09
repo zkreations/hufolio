@@ -8,13 +8,13 @@ draft: false
 
 Blockquotes emphasize notable excerpts and external perspectives. Hufolio renders quotations with a subtle left accent line and muted typographic styling.
 
-### Standard Blockquote
+## Standard Blockquote
 
 > Good design is as little design as possible. Less, but better — because it concentrates on the essential aspects, and the products are not burdened with non-essentials.
 >
 > — Dieter Rams, Ten Principles for Good Design
 
-### Nested Quotation
+## Nested Quotation
 
 Quotations can also be nested to show dialogue or layered citations:
 

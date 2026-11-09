@@ -8,7 +8,7 @@ draft: false
 
 Editorial content frequently makes use of varied text treatments to indicate emphasis, corrections, and citations.
 
-### Formatting Styles
+## Formatting Styles
 
 - **Bold Text:** Used for **strong semantic emphasis** and crucial takeaways.
 - *Italic Text:* Used for *gentle typographic inflection*, book titles, and foreign phrases.

@@ -36,6 +36,7 @@ jobs:
       - name: Run automated validation suite
         run: |
           python tests/validate.py
+          python tests/quality_audit.py
 
       - name: Check internal links and asset integrity
         uses: lycheeverse/lychee-action@v2
