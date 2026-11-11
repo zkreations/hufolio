@@ -50,17 +50,6 @@
   --primary: #0066cc;
   --on-primary: #ffffff;
   --focus: var(--primary);
-
-  /* Legacy aliases for backward compatibility */
-  --color-bg: var(--surface);
-  --color-text: var(--on-surface);
-  --color-text-muted: var(--on-surface-muted);
-  --color-border: var(--outline);
-  --color-surface: var(--surface-container);
-  --color-surface-variant: var(--surface-container-high);
-  --color-primary: var(--primary);
-  --color-on-primary: var(--on-primary);
-  --color-focus: var(--focus);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -76,16 +65,5 @@
     --primary: #4da3ff;
     --on-primary: #121212;
     --focus: var(--primary);
-
-    /* Legacy aliases for backward compatibility */
-    --color-bg: var(--surface);
-    --color-text: var(--on-surface);
-    --color-text-muted: var(--on-surface-muted);
-    --color-border: var(--outline);
-    --color-surface: var(--surface-container);
-    --color-surface-variant: var(--surface-container-high);
-    --color-primary: var(--primary);
-    --color-on-primary: var(--on-primary);
-    --color-focus: var(--focus);
   }
 }
