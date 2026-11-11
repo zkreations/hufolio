@@ -26,7 +26,7 @@ dd {
 }
 
 :focus-visible {
-  outline: var(--focus-ring) solid var(--color-focus);
+  outline: var(--focus-ring) solid var(--focus);
   outline-offset: var(--focus-ring);
 }
 
@@ -47,8 +47,8 @@ strong {
 }
 
 body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
+  background-color: var(--surface);
+  color: var(--on-surface);
   font-family: var(--font-sans);
   font-size: 1.0625rem;
   line-height: var(--line-height-body);
@@ -67,7 +67,7 @@ input, button, textarea, select {
 }
 
 a {
-  color: var(--color-primary);
+  color: var(--primary);
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;

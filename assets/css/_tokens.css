@@ -39,25 +39,53 @@
   --line-height-heading: 1.25;
   --focus-ring: 2px;
 
-  --color-bg: #ffffff;
-  --color-text: #1a1a1a;
-  --color-text-muted: #737373;
-  --color-border: #e5e5e5;
-  --color-surface: #f7f7f7;
-  --color-primary: #0066cc;
-  --color-surface-variant: #f4f4f5;
-  --color-focus: #0066cc;
+  /* Semantic design tokens - Light theme */
+  --surface: #ffffff;
+  --on-surface: #1a1a1a;
+  --on-surface-muted: #737373;
+  --outline: #e5e5e5;
+  --surface-container: #f7f7f7;
+  --surface-container-high: #f4f4f5;
+  --on-surface-container: #1a1a1a;
+  --primary: #0066cc;
+  --on-primary: #ffffff;
+  --focus: var(--primary);
+
+  /* Legacy aliases for backward compatibility */
+  --color-bg: var(--surface);
+  --color-text: var(--on-surface);
+  --color-text-muted: var(--on-surface-muted);
+  --color-border: var(--outline);
+  --color-surface: var(--surface-container);
+  --color-surface-variant: var(--surface-container-high);
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-focus: var(--focus);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-bg: #121212;
-    --color-text: #e0e0e0;
-    --color-text-muted: #888888;
-    --color-border: #262626;
-    --color-surface: #1a1a1a;
-    --color-primary: #4da3ff;
-    --color-surface-variant: #1e1e1e;
-    --color-focus: #4da3ff;
+    /* Semantic design tokens - Dark theme */
+    --surface: #121212;
+    --on-surface: #e0e0e0;
+    --on-surface-muted: #888888;
+    --outline: #262626;
+    --surface-container: #1a1a1a;
+    --surface-container-high: #1e1e1e;
+    --on-surface-container: #e0e0e0;
+    --primary: #4da3ff;
+    --on-primary: #121212;
+    --focus: var(--primary);
+
+    /* Legacy aliases for backward compatibility */
+    --color-bg: var(--surface);
+    --color-text: var(--on-surface);
+    --color-text-muted: var(--on-surface-muted);
+    --color-border: var(--outline);
+    --color-surface: var(--surface-container);
+    --color-surface-variant: var(--surface-container-high);
+    --color-primary: var(--primary);
+    --color-on-primary: var(--on-primary);
+    --color-focus: var(--focus);
   }
 }

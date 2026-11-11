@@ -36,17 +36,20 @@ def audit_color_contrast():
     text_light = "#1a1a1a"
     muted_light = "#737373"
     primary_light = "#0066cc"
+    on_primary_light = "#ffffff"
 
     c_text_light = contrast_ratio(text_light, bg_light)
     c_muted_light = contrast_ratio(muted_light, bg_light)
     c_primary_light = contrast_ratio(primary_light, bg_light)
+    c_on_primary_light = contrast_ratio(on_primary_light, primary_light)
 
     print(f"      Light Theme (Background: {bg_light}):")
     print(f"        - Primary text  ({text_light}):    {c_text_light:.2f}:1 (Target: >= 4.5:1)")
     print(f"        - Muted text    ({muted_light}):    {c_muted_light:.2f}:1 (Target: >= 4.5:1)")
     print(f"        - Primary links ({primary_light}):  {c_primary_light:.2f}:1 (Target: >= 4.5:1)")
+    print(f"        - On-primary    ({on_primary_light} on {primary_light}): {c_on_primary_light:.2f}:1 (Target: >= 4.5:1)")
 
-    if c_text_light < 4.5 or c_muted_light < 4.5 or c_primary_light < 4.5:
+    if c_text_light < 4.5 or c_muted_light < 4.5 or c_primary_light < 4.5 or c_on_primary_light < 4.5:
         print("FAILED: Light theme does not meet WCAG AA ratio 4.5:1")
         return False
 
@@ -55,17 +58,20 @@ def audit_color_contrast():
     text_dark = "#e0e0e0"
     muted_dark = "#888888"
     primary_dark = "#4da3ff"
+    on_primary_dark = "#121212"
 
     c_text_dark = contrast_ratio(text_dark, bg_dark)
     c_muted_dark = contrast_ratio(muted_dark, bg_dark)
     c_primary_dark = contrast_ratio(primary_dark, bg_dark)
+    c_on_primary_dark = contrast_ratio(on_primary_dark, primary_dark)
 
     print(f"      Dark Theme (Background: {bg_dark}):")
     print(f"        - Primary text  ({text_dark}):    {c_text_dark:.2f}:1 (Target: >= 4.5:1)")
     print(f"        - Muted text    ({muted_dark}):    {c_muted_dark:.2f}:1 (Target: >= 4.5:1)")
     print(f"        - Primary links ({primary_dark}):  {c_primary_dark:.2f}:1 (Target: >= 4.5:1)")
+    print(f"        - On-primary    ({on_primary_dark} on {primary_dark}): {c_on_primary_dark:.2f}:1 (Target: >= 4.5:1)")
 
-    if c_text_dark < 4.5 or c_muted_dark < 4.5 or c_primary_dark < 4.5:
+    if c_text_dark < 4.5 or c_muted_dark < 4.5 or c_primary_dark < 4.5 or c_on_primary_dark < 4.5:
         print("FAILED: Dark theme does not meet WCAG AA ratio 4.5:1")
         return False
 
