@@ -54,16 +54,17 @@
     {{ with $authorBio }}<p class="aside-bio">{{ . }}</p>{{ end }}
 
     <div class="aside-stats">
-      <div class="aside-stats-item">
-        <strong class="aside-stats-num">{{ len $sorted }}</strong>
-        <span>{{ i18n "post_count" (len $sorted) }}</span>
-      </div>
+      {{ $postCount := len $sorted }}
       {{ $totalWords := 0 }}
       {{ range $sorted }}
         {{ $totalWords = add $totalWords .WordCount }}
       {{ end }}
       <div class="aside-stats-item">
-        <strong class="aside-stats-num">{{ $totalWords }}</strong>
+        <strong class="aside-stats-num" title="{{ lang.FormatNumber 0 $postCount }}">{{ partial "func/compact-number.html" $postCount }}</strong>
+        <span>{{ i18n "post_count" $postCount }}</span>
+      </div>
+      <div class="aside-stats-item">
+        <strong class="aside-stats-num" title="{{ lang.FormatNumber 0 $totalWords }}">{{ partial "func/compact-number.html" $totalWords }}</strong>
         <span>{{ i18n "words_count" $totalWords }}</span>
       </div>
     </div>

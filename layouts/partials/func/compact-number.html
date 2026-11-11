@@ -1,0 +1,15 @@
+{{/*
+  Parcial funcional: compact-number
+  Convierte valores numéricos a formato compacto: 1.2K, 45K, 3.4M, 1B.
+  Uso: partial "func/compact-number.html" $numero
+*/}}
+{{- $n := float (or . 0) -}}
+{{- $formatted := (string (cast.ToInt $n)) -}}
+{{- if ge $n 1000000000.0 -}}
+  {{- $formatted = printf "%.1fB" (div $n 1000000000.0) | replaceRE `\.0B$` "B" -}}
+{{- else if ge $n 1000000.0 -}}
+  {{- $formatted = printf "%.1fM" (div $n 1000000.0) | replaceRE `\.0M$` "M" -}}
+{{- else if ge $n 1000.0 -}}
+  {{- $formatted = printf "%.1fK" (div $n 1000.0) | replaceRE `\.0K$` "K" -}}
+{{- end -}}
+{{- return $formatted -}}
