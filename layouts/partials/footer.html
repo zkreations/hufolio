@@ -15,7 +15,7 @@
           {{- range . -}}
             {{- if and .name .url -}}
               <li class="social-item">
-                <a href="{{ .url }}" rel="noopener noreferrer" target="_blank">{{ .name }}</a>
+                <a href="{{ .url }}" rel="noopener noreferrer" target="_blank">{{ .name }}<span class="sr-only"> ({{ i18n "opens_in_new_tab" | default "opens in a new tab" }})</span></a>
               </li>
             {{- end -}}
           {{- end -}}

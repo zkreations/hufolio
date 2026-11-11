@@ -1,6 +1,6 @@
 <h{{ .Level }}{{ with .Anchor }} id="{{ . }}"{{ end }}{{ range $k, $v := .Attributes }}{{ if ne $k "id" }} {{ $k }}="{{ $v }}"{{ end }}{{ end }}>
   {{- .Text | safeHTML -}}
   {{- with .Anchor -}}
-    <a class="heading-anchor" href="#{{ . }}" aria-label="Link to this section">#</a>
+    <a class="heading-anchor" href="#{{ . }}" aria-label="{{ printf "%s: %s" (i18n "link_to_section" | default "Link to section") ($.Text | plainify) }}">#</a>
   {{- end -}}
 </h{{ .Level }}>

@@ -60,17 +60,17 @@
         {{ $totalWords = add $totalWords .WordCount }}
       {{ end }}
       <div class="aside-stats-item">
-        <strong class="aside-stats-num" title="{{ lang.FormatNumber 0 $postCount }}">{{ partial "func/compact-number.html" $postCount }}</strong>
+        <strong class="aside-stats-num" aria-label="{{ lang.FormatNumber 0 $postCount }}" title="{{ lang.FormatNumber 0 $postCount }}">{{ partial "func/compact-number.html" $postCount }}</strong>
         <span>{{ i18n "post_count" $postCount }}</span>
       </div>
       <div class="aside-stats-item">
-        <strong class="aside-stats-num" title="{{ lang.FormatNumber 0 $totalWords }}">{{ partial "func/compact-number.html" $totalWords }}</strong>
+        <strong class="aside-stats-num" aria-label="{{ lang.FormatNumber 0 $totalWords }}" title="{{ lang.FormatNumber 0 $totalWords }}">{{ partial "func/compact-number.html" $totalWords }}</strong>
         <span>{{ i18n "words_count" $totalWords }}</span>
       </div>
     </div>
   </aside>
 
-  <section class="site-feed">
+  <section class="site-feed" aria-label="{{ i18n "recent_posts" | default "Recent posts" }}">
     <div class="post-list">
       {{ range $paginator.Pages }}
         <article class="post-item{{ if .Params.pinned }} post-item--pinned{{ end }}">
@@ -78,6 +78,7 @@
             <a href="{{ .RelPermalink }}">
               {{- if .Params.pinned -}}
                 <svg viewBox="0 0 24 24" class="i i-pin" aria-hidden="true"><path d="M7 2h10m-2 0v7q4 2 4 6v3H5v-3q0-4 4-6V2m3 20v-9"></path></svg>
+                <span class="sr-only">[{{ i18n "pinned" | default "Pinned" }}] </span>
               {{- end -}}
               {{ .Title }}
             </a>

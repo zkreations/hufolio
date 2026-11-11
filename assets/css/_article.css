@@ -60,6 +60,10 @@
   color: var(--on-surface);
 }
 
+.article-body a {
+  text-decoration: underline;
+}
+
 .article-body > * + * {
   margin-top: 1.5rem;
   margin-bottom: 0;
@@ -215,6 +219,7 @@ pre code {
 .heading-anchor {
   opacity: 0;
   margin-left: 0.35em;
+  padding: 0.25rem;
   text-decoration: none;
   color: var(--on-surface-muted);
   font-weight: normal;

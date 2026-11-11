@@ -15,6 +15,10 @@
   top: 1rem;
 }
 
+#main-content:focus {
+  outline: none;
+}
+
 .container {
   width: 100%;
   max-width: var(--content-max-width-wide);
@@ -77,6 +81,10 @@
 }
 
 .site-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding-inline: 0.25rem;
   font-size: .875rem;
   color: var(--on-surface-muted);
 }

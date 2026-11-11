@@ -81,3 +81,12 @@ other = "words"
 
 [author]
 other = "Author"
+
+[link_to_section]
+other = "Link to section"
+
+[pinned]
+other = "Pinned"
+
+[opens_in_new_tab]
+other = "opens in a new tab"

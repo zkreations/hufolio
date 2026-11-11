@@ -81,3 +81,12 @@ other = "palabras"
 
 [author]
 other = "Autor"
+
+[link_to_section]
+other = "Enlace a la sección"
+
+[pinned]
+other = "Fijado"
+
+[opens_in_new_tab]
+other = "abre en una nueva pestaña"
