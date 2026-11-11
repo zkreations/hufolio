@@ -328,19 +328,16 @@ hugo server --themesDir ../.. -s exampleSite
 
 Open `http://localhost:1313/` in your browser.
 
-### Running Automated Test Suites
+### Running Automated Validation
 
-Hufolio includes an automated validation and accessibility audit suite:
+Hufolio includes an automated validation suite to verify the HTML contract and performance budgets:
 
 ```bash
 # 1. Build the example site
 hugo --themesDir ../.. -s exampleSite --gc --minify
 
 # 2. Run contract & budget validation
-python tests/validate.py
-
-# 3. Run WCAG 2.1 AA & heading hierarchy quality audit
-python tests/quality_audit.py
+bash .github/scripts/validate.sh
 ```
 
 ---

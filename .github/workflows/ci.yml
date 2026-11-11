@@ -24,19 +24,14 @@ jobs:
           hugo-version: 'latest'
           extended: true
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
-
       - name: Build example site
         run: |
           hugo --themesDir ../.. -s exampleSite --gc --minify --printPathWarnings
 
-      - name: Run automated validation suite
+      - name: Validate HTML Contract & Budget
         run: |
-          python tests/validate.py
-          python tests/quality_audit.py
+          chmod +x .github/scripts/validate.sh
+          .github/scripts/validate.sh
 
       - name: Check internal links and asset integrity
         uses: lycheeverse/lychee-action@v2
