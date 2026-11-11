@@ -22,6 +22,30 @@
   padding-inline: 1.25rem;
 }
 
+.container--wide {
+  max-width: var(--content-max-width-wide);
+}
+
+.home-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1.75rem, 4vw, 3.5rem);
+  align-items: flex-start;
+  padding-bottom: 3rem;
+}
+
+.site-aside {
+  flex: 1 1 240px;
+  position: sticky;
+  top: 2rem;
+  align-self: flex-start;
+}
+
+.site-feed {
+  flex: 999 1 340px;
+  min-width: 0;
+}
+
 .site-header {
   padding-block: 2rem;
   margin-bottom: 2rem;

@@ -35,6 +35,7 @@
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
 
   --content-max-width: 680px;
+  --content-max-width-wide: 1040px;
   --line-height-body: 1.7;
   --line-height-heading: 1.25;
   --focus-ring: 2px;

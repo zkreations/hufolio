@@ -5,5 +5,6 @@ date: {{ .Date }}
 draft: true
 author: ""
 image: ""
+pinned: false
 ---
 

@@ -1,20 +1,87 @@
 {{ define "main" }}
-<div class="post-list">
-  {{ $posts := where .Site.RegularPages "Section" "posts" }}
-  {{ if not $posts }}
-    {{ $posts = .Site.RegularPages }}
-  {{ end }}
-  {{ range $posts.ByDate.Reverse }}
-    <article class="post-item">
-      <h2 class="post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-      {{ with .Description }}
-        <p class="post-description">{{ . }}</p>
+{{ $posts := where .Site.RegularPages "Section" "posts" }}
+{{ if not $posts }}
+  {{ $posts = .Site.RegularPages }}
+{{ end }}
+{{ $sorted := $posts.ByDate.Reverse }}
+{{ $pinned := where $sorted "Params.pinned" true }}
+{{ $unpinned := where $sorted "Params.pinned" "!=" true }}
+{{ $feedPosts := $pinned | append $unpinned }}
+
+<div class="home-layout">
+  <aside class="site-aside">
+    {{ $authorName := "" }}
+    {{ with site.Params.author }}
+      {{ if reflect.IsMap . }}
+        {{ $authorName = .name }}
+      {{ else }}
+        {{ $authorName = . }}
       {{ end }}
-      {{ if not .Date.IsZero }}
-        <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2 Jan 2006" }}</time>
+    {{ end }}
+    {{ if not $authorName }}{{ $authorName = "Autor" }}{{ end }}
+
+    {{ $authorRole := or site.Params.author_role "" }}
+    {{ with site.Params.author }}
+      {{ if reflect.IsMap . }}
+        {{ $authorRole = or .role $authorRole }}
       {{ end }}
-    </article>
-  {{ end }}
+    {{ end }}
+
+    {{ $authorBio := or site.Params.author_bio site.Params.description "" }}
+    {{ with site.Params.author }}
+      {{ if reflect.IsMap . }}
+        {{ $authorBio = or .bio $authorBio }}
+      {{ end }}
+    {{ end }}
+
+    <div class="aside-avatar" aria-hidden="true">
+      {{ substr $authorName 0 2 | upper }}
+    </div>
+    <h2 class="aside-name">{{ $authorName }}</h2>
+    {{ with $authorRole }}<p class="aside-role">{{ . }}</p>{{ end }}
+    {{ with $authorBio }}<p class="aside-bio">{{ . }}</p>{{ end }}
+
+    <div class="aside-stats">
+      <div class="aside-stats-item">
+        <strong class="aside-stats-num">{{ len $sorted }}</strong>
+        <span>{{ if eq (len $sorted) 1 }}publicación{{ else }}publicaciones{{ end }}</span>
+      </div>
+      {{ $totalWords := 0 }}
+      {{ range $sorted }}
+        {{ $totalWords = add $totalWords .WordCount }}
+      {{ end }}
+      <div class="aside-stats-item">
+        <strong class="aside-stats-num">{{ $totalWords }}</strong>
+        <span>palabras</span>
+      </div>
+    </div>
+  </aside>
+
+  <section class="site-feed">
+    <div class="post-list">
+      {{ range $feedPosts }}
+        <article class="post-item{{ if .Params.pinned }} post-item--pinned{{ end }}">
+          <h2 class="post-title">
+            <a href="{{ .RelPermalink }}">
+              {{- if .Params.pinned -}}
+                <svg viewBox="0 0 24 24" class="i i-pin" aria-hidden="true"><path d="M7 2h10m-2 0v7q4 2 4 6v3H5v-3q0-4 4-6V2m3 20v-9"></path></svg>
+              {{- end -}}
+              {{ .Title }}
+            </a>
+          </h2>
+          {{ with .Description }}
+            <p class="post-description">{{ . }}</p>
+          {{ end }}
+          <div class="post-meta">
+            {{ if not .Date.IsZero }}
+              <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2 Jan 2006" }}</time>
+            {{ end }}
+            <span>·</span>
+            <span>{{ .ReadingTime }} min</span>
+          </div>
+        </article>
+      {{ end }}
+    </div>
+  </section>
 </div>
 {{ end }}
-

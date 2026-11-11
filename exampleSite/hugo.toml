@@ -8,6 +8,8 @@ disableKinds = ["taxonomy", "term"]
 [params]
   description = "A minimalist editorial site built with Hufolio."
   author = "zkreations"
+  author_role = "Escribe sobre hábitos, diseño y tecnología"
+  author_bio = "Publicaciones y reflexiones para ordenar ideas. Guardando lo esencial, sea corto o largo."
 
 [menu]
   [[menu.main]]

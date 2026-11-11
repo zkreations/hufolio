@@ -3,6 +3,7 @@ title: "Simple Text Article"
 description: "A short post testing clean paragraph rendering without extra elements."
 date: 2026-11-01T10:00:00-05:00
 author: "zkreations"
+pinned: true
 draft: false
 ---
 

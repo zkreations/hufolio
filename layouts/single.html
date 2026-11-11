@@ -9,7 +9,7 @@
     {{ if and $isPost (or .Params.author site.Params.author (not .Date.IsZero)) }}
     <div class="article-meta">
       {{ with or .Params.author site.Params.author }}
-        <span class="article-author">{{ . }}</span>
+        <span class="article-author">{{ if reflect.IsMap . }}{{ .name }}{{ else }}{{ . }}{{ end }}</span>
       {{ end }}
       {{ if and (or .Params.author site.Params.author) (not .Date.IsZero) }}
         <span class="article-meta-separator" aria-hidden="true">•</span>
