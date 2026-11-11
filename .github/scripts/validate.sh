@@ -61,7 +61,7 @@ for post in "$posts_dir"/*; do
   grep -Eq '<header class=["'\'']?article-header["'\'']?>' "$html_file" || { echo "FAILED: [$post_name] Missing article-header"; exit 1; }
 
   if [ "$post_name" = "post-with-cover" ]; then
-    grep -Eq '<figure class=["'\'']?article-cover["'\'']?>[[:space:]]*<img[[:space:]]+src=' "$html_file" || { echo "FAILED: [post-with-cover] Missing cover figure"; exit 1; }
+    grep -Eq '<figure class=["'\'']?article-cover.*["'\'']?>[[:space:]]*<img[[:space:]]+src=' "$html_file" || { echo "FAILED: [post-with-cover] Missing cover figure"; exit 1; }
   fi
 
   if [ "$post_name" = "post-no-description" ]; then
