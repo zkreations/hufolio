@@ -1,0 +1,42 @@
+# {{ site.Title }}
+{{- $siteDescription := or .Description site.Params.description }}
+{{- with $siteDescription }}
+
+> {{ . | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace }}
+{{- end }}
+{{- with .RawContent }}
+
+{{ . | strings.TrimSpace }}
+{{- end }}
+{{- $mainSections := site.Params.mainSections | default (slice "posts") }}
+{{- $posts := where site.RegularPages "Type" "in" $mainSections }}
+{{- $pages := where site.RegularPages "Type" "not in" $mainSections }}
+{{- range $page := $pages }}
+
+---
+
+## {{ $page.Title }}
+
+- URL: {{ $page.Permalink }}
+{{- with (or $page.Description $page.Summary) }}
+- Description: {{ . | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace }}
+{{- end }}
+
+{{ $page.RawContent | strings.TrimSpace }}
+{{- end }}
+{{- range $page := $posts }}
+
+---
+
+## {{ $page.Title }}
+
+- URL: {{ $page.Permalink }}
+{{- if and $page.Date (not $page.Date.IsZero) }}
+- Date: {{ $page.Date.Format "2006-01-02" }}
+{{- end }}
+{{- with (or $page.Description $page.Summary) }}
+- Description: {{ . | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace }}
+{{- end }}
+
+{{ $page.RawContent | strings.TrimSpace }}
+{{- end }}

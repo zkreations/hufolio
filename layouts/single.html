@@ -1,5 +1,7 @@
 {{ define "main" }}
-{{ $isPost := or (eq .Section "posts") (not .Date.IsZero) }}
+{{- $mainSections := site.Params.mainSections | default (slice "posts") -}}
+{{- $isPost := or (in $mainSections .Section) (in $mainSections .Type) (not .Date.IsZero) -}}
+{{- $dateFormat := site.Params.date_format | default "02 Jan 2006" -}}
 <article class="{{ if $isPost }}article{{ else }}page{{ end }}">
   <header class="article-header">
     <h1 class="article-title">{{ .Title }}</h1>
@@ -15,7 +17,7 @@
         <span class="article-meta-separator" aria-hidden="true">•</span>
       {{ end }}
       {{ if not .Date.IsZero }}
-        <time class="article-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2 Jan 2006" }}</time>
+        <time class="article-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format $dateFormat }}</time>
       {{ end }}
     </div>
     {{ end }}

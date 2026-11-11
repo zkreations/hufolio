@@ -1,5 +1,9 @@
 {{ define "main" }}
-{{ $posts := where .Site.RegularPages "Section" "posts" }}
+{{ $mainSections := site.Params.mainSections | default (slice "posts") }}
+{{ $posts := where .Site.RegularPages "Section" "in" $mainSections }}
+{{ if not $posts }}
+  {{ $posts = where .Site.RegularPages "Type" "in" $mainSections }}
+{{ end }}
 {{ if not $posts }}
   {{ $posts = .Site.RegularPages }}
 {{ end }}
@@ -7,6 +11,10 @@
 {{ $pinned := where $sorted "Params.pinned" true }}
 {{ $unpinned := where $sorted "Params.pinned" "!=" true }}
 {{ $feedPosts := $pinned | append $unpinned }}
+{{ with site.Params.home_posts_limit }}
+  {{ $feedPosts = first . $feedPosts }}
+{{ end }}
+{{ $dateFormat := site.Params.date_format | default "02 Jan 2006" }}
 
 <div class="home-layout">
   <aside class="site-aside">
@@ -18,7 +26,7 @@
         {{ $authorName = . }}
       {{ end }}
     {{ end }}
-    {{ if not $authorName }}{{ $authorName = "Autor" }}{{ end }}
+    {{ if not $authorName }}{{ $authorName = i18n "author" | default "Author" }}{{ end }}
 
     {{ $authorRole := or site.Params.author_role "" }}
     {{ with site.Params.author }}
@@ -44,7 +52,7 @@
     <div class="aside-stats">
       <div class="aside-stats-item">
         <strong class="aside-stats-num">{{ len $sorted }}</strong>
-        <span>{{ if eq (len $sorted) 1 }}publicación{{ else }}publicaciones{{ end }}</span>
+        <span>{{ i18n "post_count" (len $sorted) }}</span>
       </div>
       {{ $totalWords := 0 }}
       {{ range $sorted }}
@@ -52,7 +60,7 @@
       {{ end }}
       <div class="aside-stats-item">
         <strong class="aside-stats-num">{{ $totalWords }}</strong>
-        <span>palabras</span>
+        <span>{{ i18n "words_count" $totalWords }}</span>
       </div>
     </div>
   </aside>
@@ -74,12 +82,18 @@
           {{ end }}
           <div class="post-meta">
             {{ if not .Date.IsZero }}
-              <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2 Jan 2006" }}</time>
+              <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format $dateFormat }}</time>
+            {{ else }}
+              <span class="post-date">{{ i18n "undated" | default "Undated" }}</span>
             {{ end }}
-            <span>·</span>
-            <span>{{ .ReadingTime }} min</span>
+            {{ if site.Params.show_reading_time | default true }}
+              <span>·</span>
+              <span>{{ i18n "reading_time" .ReadingTime }}</span>
+            {{ end }}
           </div>
         </article>
+      {{ else }}
+        <p class="empty-state">{{ i18n "no_posts_published" | default "No posts published yet." }}</p>
       {{ end }}
     </div>
   </section>

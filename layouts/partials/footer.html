@@ -1,6 +1,26 @@
 <footer class="site-footer">
   <div class="site-footer-inner">
-    <p class="site-copyright">{{ with site.Copyright }}{{ . }}{{ else }}© {{ now.Year }} {{ site.Params.author | default site.Title }}{{ end }}</p>
+    {{- $authorName := "" -}}
+    {{- with site.Params.author -}}
+      {{- if reflect.IsMap . -}}
+        {{- $authorName = .name -}}
+      {{- else -}}
+        {{- $authorName = . -}}
+      {{- end -}}
+    {{- end -}}
+    <p class="site-copyright">{{ with site.Copyright }}{{ . }}{{ else }}© {{ now.Year }} {{ $authorName | default site.Title }}.{{ end }}{{ with site.Params.footer_text }} {{ . }}{{ end }}</p>
+    {{- with site.Params.social -}}
+      <nav class="footer-social" aria-label="{{ i18n "aria_social_links" | default "Social links" }}">
+        <ul class="social-list">
+          {{- range . -}}
+            {{- if and .name .url -}}
+              <li class="social-item">
+                <a href="{{ .url }}" rel="noopener noreferrer" target="_blank">{{ .name }}</a>
+              </li>
+            {{- end -}}
+          {{- end -}}
+        </ul>
+      </nav>
+    {{- end -}}
   </div>
 </footer>
-

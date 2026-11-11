@@ -1,4 +1,5 @@
 {{ define "main" }}
+{{- $dateFormat := site.Params.date_format | default "02 Jan 2006" -}}
 <div class="post-list">
   <header class="section-header">
     <h1 class="section-title">{{ .Title }}</h1>
@@ -9,11 +10,20 @@
       {{ with .Description }}
         <p class="post-description">{{ . }}</p>
       {{ end }}
-      {{ if not .Date.IsZero }}
-        <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2 Jan 2006" }}</time>
-      {{ end }}
+      <div class="post-meta">
+        {{ if not .Date.IsZero }}
+          <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format $dateFormat }}</time>
+        {{ else }}
+          <span class="post-date">{{ i18n "undated" | default "Undated" }}</span>
+        {{ end }}
+        {{ if site.Params.show_reading_time | default true }}
+          <span>·</span>
+          <span>{{ i18n "reading_time" .ReadingTime }}</span>
+        {{ end }}
+      </div>
     </article>
+  {{ else }}
+    <p class="empty-state">{{ i18n "no_posts_found" | default "No posts found." }}</p>
   {{ end }}
 </div>
 {{ end }}
-

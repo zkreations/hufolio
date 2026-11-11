@@ -1,0 +1,83 @@
+[skip_to_content]
+other = "Skip to content"
+
+[recent_posts]
+other = "Recent posts"
+
+[all_posts]
+other = "All posts"
+
+[no_posts_published]
+other = "No posts published yet."
+
+[no_posts_found]
+other = "No posts found."
+
+[no_posts_in_term]
+other = "No posts found in this term."
+
+[no_terms_found]
+other = "No terms found."
+
+[page_not_found]
+other = "Page not found."
+
+[back_to_home]
+other = "Back to home"
+
+[undated]
+other = "Undated"
+
+[reading_time]
+one = "1 min read"
+other = "{{ .Count }} min read"
+
+[previous]
+other = "Previous"
+
+[next]
+other = "Next"
+
+[pagination_page_of]
+other = "Page {{ .PageNumber }} of {{ .TotalPages }}"
+
+[tags_label]
+other = "Tags:"
+
+[aria_main_menu]
+other = "Main menu"
+
+[aria_social_links]
+other = "Social links"
+
+[aria_pagination]
+other = "Pagination"
+
+[aria_tags]
+other = "Tags"
+
+[llms_posts]
+other = "Posts"
+
+[llms_pages]
+other = "Pages"
+
+[llms_optional]
+other = "Optional"
+
+[llms_full_title]
+other = "Full Content"
+
+[llms_full_description]
+other = "Consolidated full plain text content for LLMs"
+
+[post_count]
+one = "post"
+other = "posts"
+
+[words_count]
+one = "word"
+other = "words"
+
+[author]
+other = "Author"

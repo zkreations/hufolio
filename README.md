@@ -32,6 +32,8 @@ Technical elegance matches aesthetic minimalism:
 - **Comprehensive SEO & Social Cards:** Automated Open Graph, Twitter Cards, canonical links, and auto-computed image dimension metadata.
 - **Accessible by Design:** Strict WCAG 2.1 AA color contrast compliance, visible focus outlines, sequential heading hierarchy, and skip-to-content links.
 - **Syndication & Discovery:** Standard RSS 2.0 feed and XML sitemap generation.
+- **SEO & AI-ready:** Open Graph, Twitter Cards, canonical URLs, RSS autodiscovery, production-aware `robots.txt`, and structured `llms.txt` / `llms-full.txt` support.
+- **Multilingual & i18n:** Native internationalization support with built-in English (`en`) and Spanish (`es`) translations.
 - **Zero Build Fatigue:** Powered exclusively by Hugo Extended.
 
 ---
@@ -86,7 +88,7 @@ You can install Hufolio using either **Hugo Modules** (recommended) or as a **Gi
 
 ---
 
-## Quick Start Configuration
+## Configuration Reference
 
 Here is a complete, production-ready `hugo.toml` configuration:
 
@@ -96,19 +98,86 @@ title = "My Minimalist Journal"
 defaultContentLanguage = "en"
 theme = "hufolio"
 
-# SEO & Crawlers
+# SEO, AI & Crawlers
 enableRobotsTXT = true
+enableGitInfo = true
 disableKinds = ["taxonomy", "term"]
+
+[outputs]
+  home = ["html", "rss", "llms", "llmsfull"]
+
+[menus]
+  [[menus.main]]
+    name = "About"
+    pageRef = "/about"
+    weight = 1
 
 [params]
   description = "Essays on software craftsmanship, design, and minimalism."
   author = "Jane Doe"
+  author_role = "Writer & Minimalist"
+  author_bio = "Essays on design, technology, and clarity."
+  date_format = "02 Jan 2006"
+  home_posts_limit = 10
+  show_reading_time = true
+  footer_text = "All rights reserved."
 
-[menu]
-  [[menu.main]]
-    name = "About"
-    url = "/about/"
-    weight = 1
+  [[params.social]]
+    name = "GitHub"
+    url = "https://github.com/zkreations"
+```
+
+### Supported Parameters (`[params]`)
+
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `description` | string | `""` | Site description used for meta tags and homepage fallback. |
+| `author` | string / map | `""` | Author name (`author = "Name"`) or map (`author.name`, `author.role`, `author.bio`). |
+| `author_role` | string | `""` | Optional author role/tagline displayed in the homepage sidebar profile. |
+| `author_bio` | string | `""` | Optional author bio displayed in the homepage sidebar profile. |
+| `date_format` | string | `"02 Jan 2006"` | Date display format (Go time format string). |
+| `home_posts_limit` | int | `nil` | Maximum number of posts displayed on the homepage feed (shows all if unset). |
+| `show_reading_time` | bool | `true` | Display estimated reading time on post cards and feeds. |
+| `mainSections` | []string | `["posts"]` | Content sections treated as articles in feed, stats, and LLM exports. |
+| `footer_text` | string | `""` | Optional text displayed alongside the copyright in the footer. |
+| `social` | []map | `[]` | List of social links with `name` and `url` displayed in the footer. |
+
+### Search Engines & LLMs
+
+#### robots.txt
+
+Enable standard `robots.txt` generation in your `hugo.toml`:
+
+```toml
+enableRobotsTXT = true
+```
+
+The theme conditions crawler access automatically:
+- **Production (`hugo.IsProduction`):** Allows all crawlers and links to `sitemap.xml`.
+- **Development / Previews:** Blocks all crawlers (`Disallow: /`) to prevent indexing test or staging builds.
+
+#### llms.txt & llms-full.txt
+
+Hufolio includes native support for the [llmstxt.org](https://llmstxt.org) standard for AI models and assistants. Enable the formats under `[outputs]` in your `hugo.toml`:
+
+```toml
+[outputs]
+  home = ["html", "rss", "llms", "llmsfull"]
+```
+
+- **`/llms.txt`**: A concise Markdown index of your posts and pages with summaries and links to supplementary resources.
+- **`/llms-full.txt`**: A complete consolidated Markdown document with full page content (`.RawContent`) for context-window feeding.
+
+### Internationalization (i18n)
+
+Hufolio provides multilingual support via Hugo's native `i18n` framework. Built-in translations are provided for:
+- English (`en`)
+- Spanish (`es`)
+
+To set the language of your site, configure `defaultContentLanguage` in `hugo.toml`:
+
+```toml
+defaultContentLanguage = "es" # or "en"
 ```
 
 ---

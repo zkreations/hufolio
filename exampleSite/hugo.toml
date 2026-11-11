@@ -1,18 +1,44 @@
-baseURL = "https://example.com/"
-defaultContentLanguage = "en"
+# hugo server --themesDir ../..
+
 title = "Hufolio"
 theme = "hufolio"
+baseURL = "https://example.com/"
+defaultContentLanguage = "en"
+
 enableRobotsTXT = true
+enableGitInfo = true
 disableKinds = ["taxonomy", "term"]
+
+[outputFormats.llms]
+  baseName = "llms"
+  mediaType = "text/plain"
+  isPlainText = true
+  notAlternative = true
+
+[outputFormats.llmsfull]
+  baseName = "llms-full"
+  mediaType = "text/plain"
+  isPlainText = true
+  notAlternative = true
+
+[outputs]
+  home = ["html", "rss", "llms", "llmsfull"]
+
+[menus]
+  [[menus.main]]
+    name = "About"
+    pageRef = "/about"
+    weight = 1
 
 [params]
   description = "A minimalist editorial site built with Hufolio."
   author = "zkreations"
   author_role = "Escribe sobre hábitos, diseño y tecnología"
   author_bio = "Publicaciones y reflexiones para ordenar ideas. Guardando lo esencial, sea corto o largo."
+  date_format = "02 Jan 2006"
+  show_reading_time = true
+  footer_text = "All rights reserved."
 
-[menu]
-  [[menu.main]]
-    name = "About"
-    url = "/about/"
-    weight = 1
+  [[params.social]]
+    name = "GitHub"
+    url = "https://github.com/zkreations/hufolio"

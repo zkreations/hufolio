@@ -1,0 +1,43 @@
+# {{ site.Title }}
+{{- $siteDescription := or .Description site.Params.description }}
+{{- with $siteDescription }}
+
+> {{ . | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace }}
+{{- end }}
+{{- with .RawContent }}
+
+{{ . | strings.TrimSpace }}
+{{- end }}
+{{- $mainSections := site.Params.mainSections | default (slice "posts") }}
+{{- $posts := where site.RegularPages "Type" "in" $mainSections }}
+{{- $pages := where site.RegularPages "Type" "not in" $mainSections }}
+{{- with $posts }}
+
+## {{ i18n "llms_posts" | default "Posts" }}
+{{- range $page := . }}
+  {{- $desc := or $page.Description $page.Summary }}
+  {{- with $desc }}
+- [{{ $page.Title }}]({{ $page.Permalink }}): {{ . | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace }}
+  {{- else }}
+- [{{ $page.Title }}]({{ $page.Permalink }})
+  {{- end }}
+{{- end }}
+{{- end }}
+{{- with $pages }}
+
+## {{ i18n "llms_pages" | default "Pages" }}
+{{- range $page := . }}
+  {{- $desc := or $page.Description $page.Summary }}
+  {{- with $desc }}
+- [{{ $page.Title }}]({{ $page.Permalink }}): {{ . | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace }}
+  {{- else }}
+- [{{ $page.Title }}]({{ $page.Permalink }})
+  {{- end }}
+{{- end }}
+{{- end }}
+
+## {{ i18n "llms_optional" | default "Optional" }}
+- [{{ i18n "llms_full_title" | default "Full Content" }}]({{ "llms-full.txt" | absURL }}): {{ i18n "llms_full_description" | default "Consolidated full plain text content for LLMs" }}
+{{- with .OutputFormats.Get "rss" }}
+- [RSS Feed]({{ .Permalink }}): {{ site.Title }} RSS feed
+{{- end }}
