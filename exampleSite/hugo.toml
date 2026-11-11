@@ -33,7 +33,7 @@ disableKinds = ["taxonomy", "term"]
 [params]
   description = "A minimalist editorial site built with Hufolio."
   author = "zkreations"
-  author_role = "Writes about habits, design, and technology"
+  author_role = "Designer & Developer"
   author_bio = "Posts and reflections to organize ideas. Keeping the essentials, whether short or long."
   date_format = "02 Jan 2006"
   show_reading_time = true
