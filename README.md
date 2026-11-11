@@ -136,7 +136,7 @@ disableKinds = ["taxonomy", "term"]
 | `author_role` | string | `""` | Optional author role/tagline displayed in the homepage sidebar profile. |
 | `author_bio` | string | `""` | Optional author bio displayed in the homepage sidebar profile. |
 | `date_format` | string | `"02 Jan 2006"` | Date display format (Go time format string). |
-| `home_posts_limit` | int | `nil` | Maximum number of posts displayed on the homepage feed (shows all if unset). |
+| `home_posts_limit` | int | `10` | Number of posts displayed on the homepage feed before showing pagination. |
 | `show_reading_time` | bool | `true` | Display estimated reading time on post cards and feeds. |
 | `mainSections` | []string | `["posts"]` | Content sections treated as articles in feed, stats, and LLM exports. |
 | `footer_text` | string | `""` | Optional text displayed alongside the copyright in the footer. |

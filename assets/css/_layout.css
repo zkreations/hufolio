@@ -131,3 +131,29 @@
   color: var(--on-surface-muted);
   font-size: 0.9375rem;
 }
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  font-size: 0.875rem;
+}
+
+.pagination-link {
+  color: var(--on-surface-muted);
+}
+
+.pagination-link:hover {
+  color: var(--primary);
+}
+
+.pagination-link.is-disabled {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.pagination-info {
+  color: var(--on-surface-muted);
+}

@@ -19,8 +19,6 @@
 .post-list {
   display: flex;
   flex-direction: column;
-  max-width: var(--content-max-width);
-  margin-inline: auto;
 }
 
 .post-item {

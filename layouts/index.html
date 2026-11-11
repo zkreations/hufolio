@@ -11,8 +11,12 @@
 {{ $pinned := where $sorted "Params.pinned" true }}
 {{ $unpinned := where $sorted "Params.pinned" "!=" true }}
 {{ $feedPosts := $pinned | append $unpinned }}
-{{ with site.Params.home_posts_limit }}
-  {{ $feedPosts = first . $feedPosts }}
+{{ $paginator := false }}
+{{ $limit := or site.Params.home_posts_limit site.Params.paginate }}
+{{ if $limit }}
+  {{ $paginator = .Paginate $feedPosts $limit }}
+{{ else }}
+  {{ $paginator = .Paginate $feedPosts }}
 {{ end }}
 {{ $dateFormat := site.Params.date_format | default "02 Jan 2006" }}
 
@@ -67,7 +71,7 @@
 
   <section class="site-feed">
     <div class="post-list">
-      {{ range $feedPosts }}
+      {{ range $paginator.Pages }}
         <article class="post-item{{ if .Params.pinned }} post-item--pinned{{ end }}">
           <h2 class="post-title">
             <a href="{{ .RelPermalink }}">
@@ -96,6 +100,23 @@
         <p class="empty-state">{{ i18n "no_posts_published" | default "No posts published yet." }}</p>
       {{ end }}
     </div>
+    {{ if gt $paginator.TotalPages 1 }}
+      <nav class="pagination" aria-label="{{ i18n "aria_pagination" | default "Pagination" }}">
+        {{ if $paginator.HasPrev }}
+          <a class="pagination-link pagination-link--prev" href="{{ $paginator.Prev.URL }}" rel="prev">{{ i18n "previous" | default "Previous" }}</a>
+        {{ else }}
+          <span class="pagination-link pagination-link--prev is-disabled" aria-hidden="true">{{ i18n "previous" | default "Previous" }}</span>
+        {{ end }}
+        <span class="pagination-info">
+          {{ i18n "pagination_page_of" (dict "PageNumber" $paginator.PageNumber "TotalPages" $paginator.TotalPages) }}
+        </span>
+        {{ if $paginator.HasNext }}
+          <a class="pagination-link pagination-link--next" href="{{ $paginator.Next.URL }}" rel="next">{{ i18n "next" | default "Next" }}</a>
+        {{ else }}
+          <span class="pagination-link pagination-link--next is-disabled" aria-hidden="true">{{ i18n "next" | default "Next" }}</span>
+        {{ end }}
+      </nav>
+    {{ end }}
   </section>
 </div>
 {{ end }}
