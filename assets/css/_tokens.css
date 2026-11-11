@@ -17,7 +17,7 @@
 @font-face {
   font-family: "Inter";
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   font-display: swap;
   src: url("../fonts/Inter-SemiBold.woff2") format("woff2");
 }
@@ -37,6 +37,7 @@
   --content-max-width: 680px;
   --line-height-body: 1.7;
   --line-height-heading: 1.25;
+  --focus-ring: 2px;
 
   --color-bg: #ffffff;
   --color-text: #1a1a1a;

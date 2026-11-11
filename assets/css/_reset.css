@@ -1,15 +1,52 @@
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
 html {
   -webkit-text-size-adjust: 100%;
   tab-size: 4;
 }
 
+html,
 body {
+  height: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+ol,
+ul,
+dl,
+dd {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+:focus-visible {
+  outline: var(--focus-ring) solid var(--primary);
+  outline-offset: var(--focus-ring);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+  overflow-wrap: break-word;
+}
+
+b,
+strong {
+  font-weight: 500;
+}
+
+body {
   background-color: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-sans);
@@ -29,10 +66,6 @@ input, button, textarea, select {
   font: inherit;
 }
 
-p, h1, h2, h3, h4, h5, h6 {
-  overflow-wrap: break-word;
-}
-
 a {
   color: var(--color-primary);
   text-decoration: underline;
@@ -42,11 +75,6 @@ a {
 
 a:hover {
   text-decoration-thickness: 2px;
-}
-
-:focus-visible {
-  outline: 2px solid var(--color-focus);
-  outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {

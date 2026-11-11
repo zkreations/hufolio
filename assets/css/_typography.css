@@ -13,7 +13,7 @@
 .post-title {
   margin: 0;
   font-size: 1.25rem;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.35;
   letter-spacing: -0.015em;
 }
@@ -48,7 +48,7 @@
 
 .error-title {
   font-size: 4rem;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1;
   margin: 0 0 1rem;
   color: var(--color-text-muted);
