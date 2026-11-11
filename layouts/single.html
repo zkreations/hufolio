@@ -43,7 +43,7 @@
   {{- end -}}
   {{- with $cover -}}
     <figure class="article-cover{{ if or $.Params.cover_wide site.Params.cover_wide }} is-wide{{ end }}">
-      <img src="{{ .RelPermalink }}" alt="{{ or $.Params.image_alt $.Params.cover_alt "" }}" width="{{ .Width }}" height="{{ .Height }}" loading="eager" decoding="async">
+      <img src="{{ .RelPermalink }}" alt="{{ or $.Params.image_alt "" }}" width="{{ .Width }}" height="{{ .Height }}" loading="eager" decoding="async">
     </figure>
   {{- end -}}
 

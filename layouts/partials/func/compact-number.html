@@ -1,7 +1,7 @@
 {{/*
-  Parcial funcional: compact-number
-  Convierte valores numéricos a formato compacto: 1.2K, 45K, 3.4M, 1B.
-  Uso: partial "func/compact-number.html" $numero
+  Functional partial: compact-number
+  Formats numeric values into compact notation: 1.2K, 45K, 3.4M, 1B.
+  Usage: partial "func/compact-number.html" $number
 */}}
 {{- $n := float (or . 0) -}}
 {{- $formatted := (string (cast.ToInt $n)) -}}

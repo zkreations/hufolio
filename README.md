@@ -219,6 +219,7 @@ draft: false
 | `date` | Timestamp | Recommended | Publication date formatted as ISO 8601. |
 | `author` | String | Optional | Post author. Falls back to `params.author` if omitted. |
 | `image` | String | Optional | Explicit cover image path (relative or bundle resource). |
+| `image_alt` | String | Optional | Descriptive alternative text for the cover image (`alt` attribute). |
 | `draft` | Boolean | Optional | Set to `true` to exclude the post from production builds. |
 
 ### Cover Image Resolution Cascade

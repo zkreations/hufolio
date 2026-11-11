@@ -12,7 +12,7 @@
 {{ $unpinned := where $sorted "Params.pinned" "!=" true }}
 {{ $feedPosts := $pinned | append $unpinned }}
 {{ $paginator := false }}
-{{ $limit := or site.Params.home_posts_limit site.Params.paginate }}
+{{ $limit := or site.Params.home_posts_limit site.Config.Pagination.PagerSize }}
 {{ if $limit }}
   {{ $paginator = .Paginate $feedPosts $limit }}
 {{ else }}
@@ -65,7 +65,7 @@
       </div>
       <div class="aside-stats-item">
         <strong class="aside-stats-num" aria-label="{{ lang.FormatNumber 0 $totalWords }}" title="{{ lang.FormatNumber 0 $totalWords }}">{{ partial "func/compact-number.html" $totalWords }}</strong>
-        <span>{{ i18n "words_count" $totalWords }}</span>
+        <span>{{ i18n "word_count" $totalWords }}</span>
       </div>
     </div>
   </aside>
@@ -73,7 +73,7 @@
   <section class="site-feed" aria-label="{{ i18n "recent_posts" | default "Recent posts" }}">
     <div class="post-list">
       {{ range $paginator.Pages }}
-        <article class="post-item{{ if .Params.pinned }} post-item--pinned{{ end }}">
+        <article class="post-item{{ if .Params.pinned }} is-pinned{{ end }}">
           <h2 class="post-title">
             <a href="{{ .RelPermalink }}">
               {{- if .Params.pinned -}}
@@ -105,17 +105,17 @@
     {{ if gt $paginator.TotalPages 1 }}
       <nav class="pagination" aria-label="{{ i18n "aria_pagination" | default "Pagination" }}">
         {{ if $paginator.HasPrev }}
-          <a class="pagination-link pagination-link--prev" href="{{ $paginator.Prev.URL }}" rel="prev">{{ i18n "previous" | default "Previous" }}</a>
+          <a class="pagination-link" href="{{ $paginator.Prev.URL }}" rel="prev">{{ i18n "previous" | default "Previous" }}</a>
         {{ else }}
-          <span class="pagination-link pagination-link--prev is-disabled" aria-hidden="true">{{ i18n "previous" | default "Previous" }}</span>
+          <span class="pagination-link is-disabled" aria-hidden="true">{{ i18n "previous" | default "Previous" }}</span>
         {{ end }}
         <span class="pagination-info">
-          {{ i18n "pagination_page_of" (dict "PageNumber" $paginator.PageNumber "TotalPages" $paginator.TotalPages) }}
+          {{ (i18n "pagination_page_of" (dict "PageNumber" $paginator.PageNumber "TotalPages" $paginator.TotalPages)) | default (printf "Page %d of %d" $paginator.PageNumber $paginator.TotalPages) }}
         </span>
         {{ if $paginator.HasNext }}
-          <a class="pagination-link pagination-link--next" href="{{ $paginator.Next.URL }}" rel="next">{{ i18n "next" | default "Next" }}</a>
+          <a class="pagination-link" href="{{ $paginator.Next.URL }}" rel="next">{{ i18n "next" | default "Next" }}</a>
         {{ else }}
-          <span class="pagination-link pagination-link--next is-disabled" aria-hidden="true">{{ i18n "next" | default "Next" }}</span>
+          <span class="pagination-link is-disabled" aria-hidden="true">{{ i18n "next" | default "Next" }}</span>
         {{ end }}
       </nav>
     {{ end }}

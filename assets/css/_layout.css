@@ -85,14 +85,14 @@
   align-items: center;
   min-height: 2rem;
   padding-inline: 0.25rem;
-  font-size: .875rem;
+  font-size: 0.875rem;
   color: var(--on-surface-muted);
 }
 
 .site-nav a:where(:hover, .is-active) {
   color: var(--primary);
   text-decoration: underline;
-} 
+}
 
 .site-footer {
   margin-top: 2rem;
@@ -130,7 +130,7 @@
 }
 
 .social-item a:hover {
-  color: var(--on-surface);
+  color: var(--primary);
   text-decoration: underline;
 }
 

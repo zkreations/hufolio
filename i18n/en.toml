@@ -75,14 +75,14 @@ other = "Consolidated full plain text content for LLMs"
 one = "post"
 other = "posts"
 
-[words_count]
+[word_count]
 one = "word"
 other = "words"
 
 [author]
 other = "Author"
 
-[link_to_section]
+[aria_link_to_section]
 other = "Link to section"
 
 [pinned]

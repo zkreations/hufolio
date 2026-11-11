@@ -75,14 +75,14 @@ other = "Contenido consolidado en texto plano para LLMs"
 one = "publicación"
 other = "publicaciones"
 
-[words_count]
+[word_count]
 one = "palabra"
 other = "palabras"
 
 [author]
 other = "Autor"
 
-[link_to_section]
+[aria_link_to_section]
 other = "Enlace a la sección"
 
 [pinned]
