@@ -19,6 +19,8 @@
 .post-list {
   display: flex;
   flex-direction: column;
+  max-width: var(--content-max-width);
+  margin-inline: auto;
 }
 
 .post-item {
@@ -34,10 +36,8 @@
 
 .post-title {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 500;
-  line-height: 1.35;
-  letter-spacing: -0.015em;
 }
 
 .post-title a {
@@ -52,7 +52,7 @@
 
 .post-description {
   margin: 0.375rem 0 0.5rem;
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   color: var(--on-surface-muted);
   line-height: 1.5;
   display: -webkit-box;
@@ -130,6 +130,8 @@
 .error-page {
   padding: 4rem 0;
   text-align: center;
+  max-width: var(--content-max-width);
+  margin-inline: auto;
 }
 
 .error-title {

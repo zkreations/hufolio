@@ -38,6 +38,7 @@ disableKinds = ["taxonomy", "term"]
   date_format = "02 Jan 2006"
   show_reading_time = true
   footer_text = "All rights reserved."
+  cover_wide = true
 
   [[params.social]]
     name = "GitHub"

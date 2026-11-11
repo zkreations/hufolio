@@ -50,7 +50,6 @@ body {
   background-color: var(--surface);
   color: var(--on-surface);
   font-family: var(--font-sans);
-  font-size: 1.0625rem;
   line-height: var(--line-height-body);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

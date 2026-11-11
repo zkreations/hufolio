@@ -5,7 +5,7 @@
 </head>
 <body>
   <a class="skip-link" href="#main-content">{{ i18n "skip_to_content" | default "Skip to content" }}</a>
-  <div class="container{{ if .IsHome }} container--wide{{ end }}">
+  <div class="container">
     {{ partial "header.html" . }}
     <main id="main-content" class="site-main">
       {{ block "main" . }}{{ end }}
