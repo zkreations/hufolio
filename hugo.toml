@@ -1,17 +1,3 @@
-disableKinds = ["taxonomy", "term"]
-
-[outputFormats.llms]
-  baseName = "llms"
-  mediaType = "text/plain"
-  isPlainText = true
-  notAlternative = true
-
-[outputFormats.llmsfull]
-  baseName = "llms-full"
-  mediaType = "text/plain"
-  isPlainText = true
-  notAlternative = true
-
 [module]
   [module.hugoVersion]
     extended = true
