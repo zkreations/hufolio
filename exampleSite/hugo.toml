@@ -1,6 +1,6 @@
 baseURL = "https://example.com/"
 defaultContentLanguage = "en"
-title = "Hufolio Demo"
+title = "Hufolio"
 theme = "hufolio"
 enableRobotsTXT = true
 disableKinds = ["taxonomy", "term"]
