@@ -68,13 +68,14 @@ input, button, textarea, select {
 
 a {
   color: var(--primary);
-  text-decoration: underline;
+  text-decoration: none;
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
 }
 
 a:hover {
-  text-decoration-thickness: 2px;
+  color: var(--primary);
+  text-decoration: underline;
 }
 
 @media (prefers-reduced-motion: reduce) {

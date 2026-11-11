@@ -12,7 +12,7 @@ Here is the first photographic figure:
 
 ![First Demonstration Image](img-1.jpg "Architectural representation of primary layout grid")
 
-The custom Markdown render hook ensures each image is emitted inside a `<figure class="article-image">` with natural `width` and `height` attributes to prevent Cumulative Layout Shift (CLS), accompanied by an optional `<figcaption>`.
+The custom Markdown render hook ensures each image is emitted inside a `<figure class="article-figure">` with natural `width` and `height` attributes to prevent Cumulative Layout Shift (CLS), accompanied by an optional `<figcaption>`.
 
 Here is a secondary illustration positioned further down the page:
 

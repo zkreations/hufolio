@@ -74,12 +74,6 @@
   text-decoration: none;
 }
 
-.site-title:hover,
-.site-title a:hover {
-  color: var(--on-surface);
-  text-decoration: none;
-}
-
 .site-nav {
   display: flex;
   align-items: center;
@@ -87,16 +81,14 @@
 }
 
 .site-nav a {
-  font-size: 0.9375rem;
+  font-size: .875rem;
   color: var(--on-surface-muted);
-  text-decoration: none;
 }
 
-.site-nav a:hover,
-.site-nav a.is-active {
-  color: var(--on-surface);
+.site-nav a:where(:hover, .is-active) {
+  color: var(--primary);
   text-decoration: underline;
-}
+} 
 
 .site-footer {
   margin-top: 2rem;
