@@ -1,7 +1,6 @@
 ---
 title: "Article with Rich Editorial Formatting"
 description: "Testing standard inline typography: strong emphasis, italics, strikethrough, and abbreviations."
-date: 2026-11-01T21:00:00-05:00
 author: "zkreations"
 draft: false
 ---

@@ -1,7 +1,6 @@
 ---
 title: "Article with Nested Lists"
 description: "Verifying multi-level unordered and ordered lists in editorial formatting."
-date: 2026-11-01T16:00:00-05:00
 author: "zkreations"
 draft: false
 ---

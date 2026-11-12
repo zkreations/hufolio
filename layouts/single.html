@@ -1,6 +1,6 @@
 {{ define "main" }}
 {{- $mainSections := site.Params.mainSections | default (slice "posts") -}}
-{{- $isPost := or (in $mainSections .Section) (in $mainSections .Type) (not .Date.IsZero) -}}
+{{- $isPost := or (in $mainSections .Section) (in $mainSections .Type) -}}
 {{- $dateFormat := site.Params.date_format | default "02 Jan 2006" -}}
 <article class="{{ if $isPost }}article{{ else }}page{{ end }}"{{ if $isPost }} data-iv="article"{{ end }}>
   <header class="article-header">
@@ -11,16 +11,23 @@
     {{ with .Description }}
       <p class="article-description"{{ if $isPost }} data-iv="description"{{ end }}>{{ . }}</p>
     {{ end }}
-    {{ if and $isPost (or .Params.author site.Params.author (not .Date.IsZero)) }}
+    {{ if $isPost }}
+    {{- $author := or .Params.author site.Params.author -}}
+    {{- $date := .Date -}}
+    {{- if and (not .Params.date) .GitInfo -}}
+      {{- $date = .GitInfo.AuthorDate -}}
+    {{- end -}}
     <div class="article-meta">
-      {{ with or .Params.author site.Params.author }}
+      {{ with $author }}
         <span class="article-author" data-iv="author">{{ if reflect.IsMap . }}{{ .name }}{{ else }}{{ . }}{{ end }}</span>
       {{ end }}
-      {{ if and (or .Params.author site.Params.author) (not .Date.IsZero) }}
+      {{ if $author }}
         <span class="article-meta-separator" aria-hidden="true">•</span>
       {{ end }}
-      {{ if not .Date.IsZero }}
-        <time class="article-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}" data-iv="date">{{ .Date.Format $dateFormat }}</time>
+      {{ if and $date (not $date.IsZero) }}
+        <time class="article-date" datetime="{{ $date.Format "2006-01-02T15:04:05Z07:00" }}" data-iv="date">{{ $date.Format $dateFormat }}</time>
+      {{ else }}
+        <span class="article-date article-date-empty">{{ i18n "undated" | default "Undated" }}</span>
       {{ end }}
     </div>
     {{ end }}

@@ -1,7 +1,6 @@
 ---
 title: "Article with Structured Data Tables"
 description: "Testing responsive tables, cell padding, column alignment, and overflow handling."
-date: 2026-11-01T18:00:00-05:00
 author: "zkreations"
 draft: false
 ---

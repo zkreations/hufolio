@@ -1,7 +1,6 @@
 ---
 title: "Article Inheriting Global Author"
 description: "Testing fallback inheritance from site configuration when post author is omitted."
-date: 2026-11-01T14:00:00-05:00
 draft: false
 ---
 

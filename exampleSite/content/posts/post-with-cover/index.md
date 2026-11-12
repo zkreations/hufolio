@@ -1,7 +1,6 @@
 ---
 title: "Article with Featured Cover Image"
 description: "Demonstrating how featured cover images are extracted and rendered in Instant View."
-date: 2026-11-01T12:00:00-05:00
 author: "zkreations"
 image: "cover.jpg"
 draft: false

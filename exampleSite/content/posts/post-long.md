@@ -1,7 +1,6 @@
 ---
 title: "Long Form Reading and Editorial Architecture"
 description: "An extensive long-form article testing vertical rhythm and heading hierarchies."
-date: 2026-11-01T11:00:00-05:00
 author: "zkreations"
 draft: false
 ---

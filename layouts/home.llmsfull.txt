@@ -31,8 +31,12 @@
 ## {{ $page.Title }}
 
 - URL: {{ $page.Permalink }}
-{{- if and $page.Date (not $page.Date.IsZero) }}
-- Date: {{ $page.Date.Format "2006-01-02" }}
+{{- $date := $page.Date -}}
+{{- if and (not $page.Params.date) $page.GitInfo -}}
+  {{- $date = $page.GitInfo.AuthorDate -}}
+{{- end -}}
+{{- if and $date (not $date.IsZero) }}
+- Date: {{ $date.Format "2006-01-02" }}
 {{- end }}
 {{- with (or $page.Description $page.Summary) }}
 - Description: {{ . | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace }}

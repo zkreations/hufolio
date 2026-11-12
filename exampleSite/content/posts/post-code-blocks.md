@@ -1,7 +1,6 @@
 ---
 title: "Article with Code Blocks and Syntax Highlighting"
 description: "Testing inline code, monospace formatting, and multiline language-specific code snippets."
-date: 2026-11-01T19:00:00-05:00
 author: "zkreations"
 draft: false
 ---

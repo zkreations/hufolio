@@ -1,7 +1,6 @@
 ---
 title: "Article with Multiple Inline Figures"
 description: "Testing inline image rendering, local asset resolution, and semantic captions."
-date: 2026-11-01T15:00:00-05:00
 author: "zkreations"
 draft: false
 ---

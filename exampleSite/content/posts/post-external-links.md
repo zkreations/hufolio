@@ -1,7 +1,6 @@
 ---
 title: "Article with External and Relative Links"
 description: "Testing hyperlink styling, anchor security attributes, and relative navigation."
-date: 2026-11-01T20:00:00-05:00
 author: "zkreations"
 draft: false
 ---

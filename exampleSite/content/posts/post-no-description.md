@@ -1,6 +1,5 @@
 ---
 title: "Article Without Description"
-date: 2026-11-01T13:00:00-05:00
 author: "zkreations"
 draft: false
 ---

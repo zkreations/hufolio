@@ -1,7 +1,6 @@
 ---
 title: "Article with Blockquotes and Citations"
 description: "Testing single quotes, nested blockquotes, and author attributions."
-date: 2026-11-01T17:00:00-05:00
 author: "zkreations"
 draft: false
 ---
