@@ -2,22 +2,25 @@
 {{- $mainSections := site.Params.mainSections | default (slice "posts") -}}
 {{- $isPost := or (in $mainSections .Section) (in $mainSections .Type) (not .Date.IsZero) -}}
 {{- $dateFormat := site.Params.date_format | default "02 Jan 2006" -}}
-<article class="{{ if $isPost }}article{{ else }}page{{ end }}">
+<article class="{{ if $isPost }}article{{ else }}page{{ end }}"{{ if $isPost }} data-iv="article"{{ end }}>
   <header class="article-header">
-    <h1 class="article-title">{{ .Title }}</h1>
+    {{ with .Params.kicker }}
+      <span class="article-kicker" data-iv="kicker">{{ . }}</span>
+    {{ end }}
+    <h1 class="article-title"{{ if $isPost }} data-iv="title"{{ end }}>{{ .Title }}</h1>
     {{ with .Description }}
-      <p class="article-description">{{ . }}</p>
+      <p class="article-description"{{ if $isPost }} data-iv="description"{{ end }}>{{ . }}</p>
     {{ end }}
     {{ if and $isPost (or .Params.author site.Params.author (not .Date.IsZero)) }}
     <div class="article-meta">
       {{ with or .Params.author site.Params.author }}
-        <span class="article-author">{{ if reflect.IsMap . }}{{ .name }}{{ else }}{{ . }}{{ end }}</span>
+        <span class="article-author" data-iv="author">{{ if reflect.IsMap . }}{{ .name }}{{ else }}{{ . }}{{ end }}</span>
       {{ end }}
       {{ if and (or .Params.author site.Params.author) (not .Date.IsZero) }}
         <span class="article-meta-separator" aria-hidden="true">•</span>
       {{ end }}
       {{ if not .Date.IsZero }}
-        <time class="article-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format $dateFormat }}</time>
+        <time class="article-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}" data-iv="date">{{ .Date.Format $dateFormat }}</time>
       {{ end }}
     </div>
     {{ end }}
@@ -46,12 +49,12 @@
     {{- if and (ne .MediaType.SubType "svg") (ne .MediaType.SubType "gif") (gt .Width 1400) -}}
       {{- $coverImg = .Resize "1400x webp" -}}
     {{- end -}}
-    <figure class="article-cover{{ if or $.Params.cover_wide site.Params.cover_wide }} is-wide{{ end }}">
+    <figure class="article-cover{{ if or $.Params.cover_wide site.Params.cover_wide }} is-wide{{ end }}" data-iv="cover">
       <img src="{{ $coverImg.RelPermalink }}" alt="{{ or $.Params.image_alt "" }}" width="{{ $coverImg.Width }}" height="{{ $coverImg.Height }}" loading="eager" fetchpriority="high" decoding="async">
     </figure>
   {{- end -}}
 
-  <div class="article-body">
+  <div class="article-body"{{ if $isPost }} data-iv="body"{{ end }}>
     {{ .Content }}
   </div>
 </article>

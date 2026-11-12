@@ -40,6 +40,7 @@ disableKinds = ["taxonomy", "term"]
   show_reading_time = true
   footer_text = "All rights reserved."
   cover_wide = true
+  telegram_channel = "@zkreations"
 
   [[params.social]]
     name = "GitHub"

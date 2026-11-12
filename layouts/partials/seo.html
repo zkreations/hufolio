@@ -58,6 +58,9 @@
 <meta property="og:description" content="{{ . }}">
 {{- end }}
 <meta property="og:url" content="{{ .Permalink }}">
+{{- with site.Params.telegram_channel | default site.Params.channel }}
+<meta name="telegram:channel" content="{{ . }}">
+{{- end }}
 {{- if .IsPage }}
 <meta property="og:type" content="article">
   {{- if not .Date.IsZero }}

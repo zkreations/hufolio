@@ -60,6 +60,11 @@ for post in "$posts_dir"/*; do
   grep -Eq '<div class=["'\'']?article-body["'\'']?[ >]' "$html_file" || { echo "FAILED: [$post_name] Missing <div class=\"article-body\">"; exit 1; }
   grep -Eq '<header class=["'\'']?article-header["'\'']?>' "$html_file" || { echo "FAILED: [$post_name] Missing article-header"; exit 1; }
 
+  # Design-agnostic contract assertions (data-iv)
+  grep -Eq 'data-iv=["'\'']?article["'\'']?' "$html_file" || { echo "FAILED: [$post_name] Missing data-iv=\"article\""; exit 1; }
+  grep -Eq 'data-iv=["'\'']?title["'\'']?' "$html_file" || { echo "FAILED: [$post_name] Missing data-iv=\"title\""; exit 1; }
+  grep -Eq 'data-iv=["'\'']?body["'\'']?' "$html_file" || { echo "FAILED: [$post_name] Missing data-iv=\"body\""; exit 1; }
+
   if [ "$post_name" = "post-with-cover" ]; then
     grep -Eq '<figure class=["'\'']?article-cover.*["'\'']?>[[:space:]]*<img[[:space:]]+src=' "$html_file" || { echo "FAILED: [post-with-cover] Missing cover figure"; exit 1; }
   fi
@@ -89,6 +94,11 @@ for page_name in "about" "static-page-about"; do
 
   if grep -Eq '<article class=["'\'']?article["'\'']?[ >]' "$html_file"; then
     echo "FAILED: Static page [$page_name] contains class 'article' (would trigger Instant View)"
+    exit 1
+  fi
+
+  if grep -Eq 'data-iv=["'\'']?article["'\'']?' "$html_file"; then
+    echo "FAILED: Static page [$page_name] contains data-iv=\"article\" (would trigger Instant View)"
     exit 1
   fi
 
