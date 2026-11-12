@@ -51,6 +51,7 @@
 <meta name="robots" content="index, follow">
 {{- end }}
 <link rel="canonical" href="{{ .Permalink }}">
+<link rel="icon" href='{{ "favicon.svg" | relURL }}' type="image/svg+xml">
 
 <meta property="og:site_name" content="{{ site.Title }}">
 <meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
