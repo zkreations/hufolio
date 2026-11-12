@@ -2,7 +2,7 @@
 
 title = "Hufolio"
 theme = "hufolio"
-baseURL = "https://example.com/"
+baseURL = "https://hufolio.zkreations.com/"
 defaultContentLanguage = "en"
 
 enableRobotsTXT = true
