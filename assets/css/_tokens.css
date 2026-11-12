@@ -36,6 +36,7 @@
 
   --content-max-width: 680px;
   --content-max-width-wide: 1040px;
+  --content-padding-inline: 1.25rem;
   --line-height-body: 1.5;
   --line-height-article: 1.75;
   --line-height-heading: 1.25;

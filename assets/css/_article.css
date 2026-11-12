@@ -4,11 +4,9 @@
   margin-inline: auto;
 }
 
-.is-wide,
-.article-cover.is-wide,
-.article-figure.is-wide {
-  width: min(calc(100% + (var(--content-max-width-wide) - var(--content-max-width))), 100vw - 2.5rem);
-  margin-inline: calc(max(calc((var(--content-max-width) - var(--content-max-width-wide)) / 2), (100% - (100vw - 2.5rem)) / 2));
+.is-wide {
+  width: min(calc(100% + (var(--content-max-width-wide) - var(--content-max-width))), 100vw);
+  margin-inline: calc(max(calc((var(--content-max-width) - var(--content-max-width-wide)) / 2), (100% - 100vw) / 2));
 }
 
 .article-header {
@@ -44,8 +42,7 @@
 }
 
 .article-cover {
-  margin: 0 0 2.5rem;
-  padding: 0;
+  margin-bottom: 2rem;
 }
 
 .article-cover img {
