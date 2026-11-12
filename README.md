@@ -81,6 +81,18 @@ enableRobotsTXT = true
 enableGitInfo = true
 disableKinds = ['taxonomy', 'term']
 
+[outputFormats.llms]
+  baseName = 'llms'
+  mediaType = 'text/plain'
+  isPlainText = true
+  notAlternative = true
+
+[outputFormats.llmsfull]
+  baseName = 'llms-full'
+  mediaType = 'text/plain'
+  isPlainText = true
+  notAlternative = true
+
 [outputs]
   home = ['html', 'rss', 'llms', 'llmsfull']
 
@@ -133,11 +145,13 @@ Posts support the following front matter variables:
 ---
 title: "Article Title"
 description: "Brief summary used for previews and SEO meta description."
-date: 2026-11-08T12:00:00Z
+date: 2026-11-08T12:00:00Z # Optional, falls back to Git commit date (with enableGitInfo) or "Undated"
 author: "Author Name" # Optional, falls back to params.author
 image: "cover.jpg" # Optional explicit cover image
 image_alt: "Alternative text for the cover image"
+cover_wide: true # Optional per-post wide cover override
 kicker: "Editorial" # Optional kicker / category above the title
+pinned: true # Optional, pins the post to the top of the homepage feed
 draft: false
 ---
 ```
@@ -242,9 +256,21 @@ The theme conditions crawler access automatically:
 
 #### llms.txt & llms-full.txt
 
-Hufolio includes native support for the [llmstxt.org](https://llmstxt.org) standard for AI models and assistants. Enable the formats under `[outputs]` in your `hugo.toml`:
+Hufolio includes native support for the [llmstxt.org](https://llmstxt.org) standard for AI models and assistants. Configure the output formats and enable them under `[outputs]` in your `hugo.toml`:
 
 ```toml
+[outputFormats.llms]
+  baseName = 'llms'
+  mediaType = 'text/plain'
+  isPlainText = true
+  notAlternative = true
+
+[outputFormats.llmsfull]
+  baseName = 'llms-full'
+  mediaType = 'text/plain'
+  isPlainText = true
+  notAlternative = true
+
 [outputs]
   home = ['html', 'rss', 'llms', 'llmsfull']
 ```
@@ -256,7 +282,7 @@ Hufolio includes native support for the [llmstxt.org](https://llmstxt.org) stand
 
 ### Custom CSS & Tokens
 
-All visual properties are defined as semantic CSS custom properties in `:root`. You can override tokens or add custom styles by creating `assets/css/_tokens.css` in your site root without modifying theme files:
+All visual properties are defined as semantic CSS custom properties in `:root`. You can customize tokens by overriding `assets/css/_tokens.css` in your site root without modifying theme files. Because Hugo replaces the entire file, copy the theme's `_tokens.css` as a baseline to preserve the `@font-face` definitions:
 
 ```css
 :root {
