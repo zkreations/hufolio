@@ -12,9 +12,8 @@
 {{ $unpinned := where $sorted "Params.pinned" "!=" true }}
 {{ $feedPosts := $pinned | append $unpinned }}
 {{ $paginator := false }}
-{{ $limit := or site.Params.home_posts_limit site.Config.Pagination.PagerSize }}
-{{ if $limit }}
-  {{ $paginator = .Paginate $feedPosts $limit }}
+{{ with site.Params.home_posts_limit }}
+  {{ $paginator = $.Paginate $feedPosts . }}
 {{ else }}
   {{ $paginator = .Paginate $feedPosts }}
 {{ end }}
