@@ -27,23 +27,35 @@
 }
 
 .home-layout {
-  display: flex;
+  display: grid;
   flex-wrap: wrap;
-  gap: clamp(1.75rem, 4vw, 3.5rem);
+  gap: clamp(1.5rem,4vw,2.5rem);
   align-items: flex-start;
-  padding-bottom: 3rem;
+  grid-template-columns: 100%;
+  grid-template-areas: 
+    "aside"
+    "main";
 }
 
 .site-aside {
-  flex: 1 1 240px;
-  position: sticky;
-  top: 2rem;
-  align-self: flex-start;
+  grid-area: aside;
 }
 
 .site-feed {
-  flex: 999 1 340px;
-  min-width: 0;
+  grid-area: main;
+}
+
+@media (width >= 992px) {
+  .site-aside {
+    top: 2rem;
+    position: sticky;
+    align-self: flex-start;
+  }
+
+  .home-layout {
+    grid-template-columns: 260px minmax(0,1fr);
+    grid-template-areas: "aside main";
+  }
 }
 
 .site-header {

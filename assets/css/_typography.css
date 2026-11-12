@@ -79,7 +79,6 @@
   border-radius: 50%;
   background: var(--surface-container-high);
   color: var(--on-surface);
-  border: 1px solid var(--outline);
   display: grid;
   place-items: center;
   font-weight: 600;
