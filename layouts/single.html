@@ -42,8 +42,12 @@
     {{- end -}}
   {{- end -}}
   {{- with $cover -}}
+    {{- $coverImg := . -}}
+    {{- if and (ne .MediaType.SubType "svg") (ne .MediaType.SubType "gif") (gt .Width 1400) -}}
+      {{- $coverImg = .Resize "1400x webp" -}}
+    {{- end -}}
     <figure class="article-cover{{ if or $.Params.cover_wide site.Params.cover_wide }} is-wide{{ end }}">
-      <img src="{{ .RelPermalink }}" alt="{{ or $.Params.image_alt "" }}" width="{{ .Width }}" height="{{ .Height }}" loading="eager" decoding="async">
+      <img src="{{ $coverImg.RelPermalink }}" alt="{{ or $.Params.image_alt "" }}" width="{{ $coverImg.Width }}" height="{{ $coverImg.Height }}" loading="eager" fetchpriority="high" decoding="async">
     </figure>
   {{- end -}}
 

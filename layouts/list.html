@@ -1,10 +1,16 @@
 {{ define "main" }}
 {{- $dateFormat := site.Params.date_format | default "02 Jan 2006" -}}
+{{- $pages := .Pages.ByDate.Reverse -}}
+{{- $paginator := false -}}
+{{- with site.Params.list_posts_limit -}}
+  {{- $paginator = $.Paginate $pages . -}}
+  {{- $pages = $paginator.Pages -}}
+{{- end -}}
 <div class="post-list">
   <header class="section-header">
     <h1 class="section-title">{{ .Title }}</h1>
   </header>
-  {{ range .Pages.ByDate.Reverse }}
+  {{ range $pages }}
     <article class="post-item">
       <h2 class="post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
       {{ with .Description }}
@@ -26,4 +32,21 @@
     <p class="empty-state">{{ i18n "no_posts_found" | default "No posts found." }}</p>
   {{ end }}
 </div>
+{{ if and $paginator (gt $paginator.TotalPages 1) }}
+  <nav class="pagination" aria-label="{{ i18n "aria_pagination" | default "Pagination" }}">
+    {{ if $paginator.HasPrev }}
+      <a class="pagination-link" href="{{ $paginator.Prev.URL }}" rel="prev">{{ i18n "previous" | default "Previous" }}</a>
+    {{ else }}
+      <span class="pagination-link is-disabled" aria-hidden="true">{{ i18n "previous" | default "Previous" }}</span>
+    {{ end }}
+    <span class="pagination-info">
+      {{ (i18n "pagination_page_of" (dict "PageNumber" $paginator.PageNumber "TotalPages" $paginator.TotalPages)) | default (printf "Page %d of %d" $paginator.PageNumber $paginator.TotalPages) }}
+    </span>
+    {{ if $paginator.HasNext }}
+      <a class="pagination-link" href="{{ $paginator.Next.URL }}" rel="next">{{ i18n "next" | default "Next" }}</a>
+    {{ else }}
+      <span class="pagination-link is-disabled" aria-hidden="true">{{ i18n "next" | default "Next" }}</span>
+    {{ end }}
+  </nav>
+{{ end }}
 {{ end }}
