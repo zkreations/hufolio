@@ -9,6 +9,7 @@
   <a href="https://github.com/zkreations/hufolio/blob/main/LICENSE"><img src="https://img.shields.io/github/license/zkreations/hufolio?style=for-the-badge&labelColor=030712&color=0d9488" alt="license"></a>
   <a href="https://github.com/zkreations/hufolio/releases"><img src="https://img.shields.io/github/v/release/zkreations/hufolio?style=for-the-badge&labelColor=030712&color=0d9488" alt="release"></a>
   <a href="https://github.com/zkreations/hufolio/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/zkreations/hufolio/ci.yml?style=for-the-badge&labelColor=030712&color=0d9488&logo=githubactions&logoColor=white" alt="ci"></a>
+  <a href="https://app.netlify.com/projects/hufolio-demo/deploys"><img src="https://img.shields.io/netlify/b15c44ac-f797-4e08-8bc1-298b424a2f43?style=for-the-badge&labelColor=030712&color=0d9488&logo=netlify&logoColor=white" alt="netlify"></a>
 </p>
 
 <p align="center">
